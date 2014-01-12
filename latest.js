@@ -2,7 +2,7 @@ var connected = false;
 var toflag = true;
 var oldmsg = '';
 var refreshtime = '8000';
-var chatboxurl = './latest.html';
+var chatboxurl = '/h15-';
 var permission = '-1';
 var zchat = {
 	lang: {
