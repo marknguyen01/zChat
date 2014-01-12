@@ -2,7 +2,7 @@ var connected = false;
 var toflag = true;
 var oldmsg = '';
 var refreshtime = '8000';
-var chatboxurl = '/h15-';
+var chatboxurl = './latest.html';
 var permission = '-1';
 var zchat = {
 	lang: {
@@ -21,7 +21,7 @@ var zchat = {
 		changelog_message: 'None',
 		help_message: '/cclear - Clear the console history<br>/help - List of known commands<br>/changelog -  List of new added features<br>/report - Report a member<br>/log - Show chatbox history<br>/friend <username> - Add a user as friends<br>/foe <username> - Add a user as foe<br>/avatar <username> - Get that user\'s avatar',
 		report_open_message: 'Report opened',
-		report_close_message: 'Report closed',
+		report_close_message: 'Report closed'
 	},
 	name: 0,
 	tid: 0,
@@ -264,7 +264,7 @@ var zchat = {
 			return false;
 		} else if (value.indexOf('/friend ') === 0) {
 			$.post("/profile?mode=editprofile&page_profil=friendsfoes", {
-				'friend': value.substring(value.indexOf(' ') + 1);
+				'friend': value.substring(value.indexOf(' ') + 1)
 			}, function (data) {
 				var notice = $(data).find(".frm-set:first dd:last span").text();
 				notice = notice == '' ? zchat.lang.syntax_error : notice;
