@@ -1,0 +1,1 @@
+Fixed users not being able to use any commands due to zchat.checkUser function didn't work as I expected

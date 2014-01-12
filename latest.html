@@ -1,0 +1,422 @@
+<style type="text/css">
+ol,
+ul {
+	list-style: none outside none;
+}
+#ddchatbox {
+	border-radius: 4px
+}
+#cbbcode {
+	float: left;
+	margin-right: 20px;
+	text-shadow: 1px 1px 1px #000000;
+}
+#zchat {
+	height: 300px;
+	position: relative;
+	width: 100%;
+}
+.zchat-popup {
+	bottom: 50px;
+	max-height: 150px;
+	overflow: auto;
+	padding: 5px;
+	position: absolute;
+	z-index: 100;
+}
+#zchat-color {
+	width: auto
+}
+#zchat-smilies {
+	width: 50%
+}
+#zchat-options > div,
+#zchat-themes > div {
+	border: 1px solid #CCCCCC;
+	margin: 7px 0;
+	padding: 2px;
+	width: 125px;
+}
+#zchat-options input,
+#zchat-themes input {
+	float: right;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+#zchat-smilies img {
+	margin: 0 4px 4px 0;
+	padding: 2px;
+	background: transparent;
+	border: 1px solid #e8e8e8;
+}
+#zchat-smilies img:hover {
+	background: #ffffff;
+	border: 1px solid #808080;
+}
+#ddcbcolors td {
+	padding: 5px;
+	cursor: pointer;
+}
+#ddcbcolors div:hover {
+	border: 1px solid #ffffff;
+}
+#show_color {
+	width: 14px;
+	height: 14px;
+	margin: 1px;
+	background: #000000;
+}
+#zchat span.date-and-time {
+	position: relative;
+	top: -1px;
+	float: right;
+}
+#zchat span.msg {
+	padding: 0px;
+}
+#zchat a.mod {
+	font-weight: bold;
+}
+#chatterlist {
+	padding: 2px 5px;
+	line-height: 15px;
+	font-size: 12px;
+}
+#chatterlist img {
+	vertical-align: baseline;
+}
+#cmdtable td {
+	border: 1px #18405E solid
+}
+#cmdtable {
+	width: 100%
+}
+.chatbox_row_1,
+.chatbox_row_2 {
+	margin: 0;
+	line-height: 14px;
+	text-indent: -90px;
+	margin: 10px 50px;
+	border-radius: 4px
+}
+#zchat-buttons {
+	float: left;
+	width: 18%;
+}
+#zchat-form {
+	margin-left: 18%;
+}
+#zchat-message {
+	width: 100%;
+	margin: 0 !important;
+	height: 20px !important;
+	padding: 2px !important;
+	border: none;
+	display: block;
+	border-radius: 4px
+}
+#c_users {
+	bottom: 42px;
+	left: 5px;
+	overflow: auto;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 164px;
+}
+#c_right {
+	bottom: 42px;
+	overflow: auto;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	display: none;
+	width: 245px;
+}
+#c_box {
+	right: 5px;
+	bottom: 42px;
+	left: 175px;
+	overflow: auto;
+	position: absolute;
+	top: 5px;
+}
+span.date-and-time {
+	font-size: 9px;
+	font-family: Tahoma, Arial
+}
+span.user {
+	font-size: 12px;
+	font-family: Tahoma, Arial
+}
+.zchat-buttons {
+	float: right;
+	margin: 0 5px !important;
+	padding: 4px !important;
+	width: auto !important;
+	height: auto !important;
+	cursor: pointer;
+	float: left;
+	margin: -1px 10px 0 0;
+	text-align: left
+}
+.zchat-buttons img {
+	width: 16px;
+	heigh: 16px;
+}
+#c_control {
+	bottom: 20px;
+	height: 22px;
+	left: 0;
+	padding: 10px;
+	position: absolute;
+	right: 0;
+}
+#c_report,
+#c_console {
+	padding: 2px 5px;
+}
+#c_console {
+	margin-bottom: 5px;
+}
+#c_report {
+	text-align: center
+}
+#c_report input,
+#c_report img {
+	width: 80%;
+	background: #FFF;
+	border-radius: 4px;
+	border: none
+}
+#c_report p {
+	margin: 5px 0;
+}
+</style>
+<div id="zchat">
+	<div id="c_users"></div>
+	<div id="c_box"></div>
+	<div id="c_right">
+		<div id="c_console" style="display:none">[INFO] zChat v1.0 by Zero
+			<br>[INFO] Type /help for commands
+			<div id="c_console_inner"></div>
+		</div>
+		<div id="c_report" style="display:none">
+			<form method="post" action="/contact?action=submit" name="report">
+				<input style="display:none" type="text" value="Chatbox Report" class="report-abuse-textarea" maxlength="54" id="subject" name="subject">
+				<textarea id="mess" name="message" rows="10" cols="25" style="display:none"></textarea>
+				<p>
+					<input id="suspect" type="text" placeholder="Suspect ?" onkeypress="zchat.report()" />
+				</p>
+				<p>
+					<input id="reason" type="text" placeholder="Reason ?" onkeypress="zchat.report()" />
+				</p>
+				<p>
+					<img alt="" src="/antirobot_pic.forum?a=1">
+				</p>
+				<p>
+					<input type="hidden" value="" name="username">
+					<input type="hidden" value="" name="time">
+					<input type="text" dir="ltr" maxlength="5" id="reg_key" name="reg_key" placeholder="Captcha">
+				</p>
+				<p style="text-align:center">
+					<input type="submit" value="Send" name="submit" class="button" onclick="zchat.submitReport(); return false">
+					<input type="hidden" value="" name="time">
+				</p>
+			</form>
+		</div>
+	</div>
+	<div id="c_popups">
+		<div id="zchat-smilies" style="display:none" class="zchat-popup"></div>
+		<div id="zchat-color" style="display:none" class="zchat-popup"></div>
+		<div id="zchat-options" style="display:none" class="zchat-popup">
+			<div><span>Bold</span>
+				<input id="divbold" type="checkbox" onclick="zchat.do_style('bold')" />
+			</div>
+			<div><span>Italic</span>
+				<input id="divitalic" type="checkbox" onclick="zchat.do_style('italic')" />
+			</div>
+			<div><span>Strike</span>
+				<input id="divstrike" type="checkbox" onclick="zchat.do_style('strike')" />
+			</div>
+			<div><span>Underline</span>
+				<input id="divunderline" type="checkbox" onclick="zchat.do_style('underline')" />
+			</div>
+		</div>
+		<div id="zchat-upload" style="display:none" class="zchat-popup">
+			<iframe scrolling="no" frameBorder="0" src="http://imageshack.us/syndicate/widget.php"></iframe>
+		</div>
+		<div id="zchat-themes" style="display:none" class="zchat-popup">
+			<div> <span>Black</span>
+				<input type="radio" value="h13" id="h13" onchange="zchat.ctheme(this.value)">
+			</div>
+			<div> <span>Thin Blue</span>
+				<input type="radio" value="h14" id="h14" onchange="zchat.ctheme(this.value)">
+			</div>
+		</div>
+	</div>
+	<div id="c_control">
+		<div style="display:none;cursor:pointer;position:absolute;left:200px" onclick="ajax_refresh_chatbox('?archives=1', 1)">Refresh</div>
+		<div id="zchat-buttons">
+			<ul>
+				<li>
+					<div id="divoption" class="zchat-buttons" title="Options" onclick="zchat.popup('zchat-options', event)">
+						<img src="http://i55.servimg.com/u/f55/17/60/28/76/cog10.png" />
+					</div>
+				</li>
+				<li>
+					<div id="divoption" class="zchat-buttons" title="Themes" onclick="zchat.popup('zchat-themes', event)">
+						<img src="http://i55.servimg.com/u/f55/17/60/28/76/page_l10.png" />
+					</div>
+				</li>
+				<li>
+					<div id="divcolor" class="zchat-buttons" onclick="zchat.popup('zchat-color', event)" title="Color">
+						<div id="show_color"></div>
+					</div>
+				</li>
+				<li>
+					<div id="divsmilies" class="zchat-buttons" onclick="zchat.loadsmilies(event)" title="Smileys">
+						<img src="http://i55.servimg.com/u/f55/17/60/28/76/emotio10.png" />
+					</div>
+				</li>
+				<li>
+					<div id="divupload" class="zchat-buttons" onclick="zchat.popup('zchat-upload', event)" title="Smileys">
+						<img src="http://i55.servimg.com/u/f55/17/60/28/76/pictur10.png" />
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div id="zchat-form">
+			<form name="cpost" method="post" onsubmit="zchat.submitmsg();return false">
+				<input type="text" id="zchat-message" name="message" autocomplete="off" />
+				<input type="hidden" name="sbold" value="0" />
+				<input type="hidden" name="sitalic" value="0" />
+				<input type="hidden" name="sunderline" value="0" />
+				<input type="hidden" name="sstrike" value="0" />
+				<input type="hidden" name="scolor" id="scolor" value="0" />
+				<input type="hidden" name="sent" value="" />
+			</form>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+/* Black */
+
+.h13 #c_users {
+	background: none repeat scroll 0 0 #484848;
+}
+.h13 #c_control {
+	background-color: #2A2A2A;
+	color: #222
+}
+.h13 #c_box {
+	background: #484848;
+}
+.h13 #c_console,
+.h13 #c_report {
+	background: #484848;
+}
+.h13 .zchat-buttons {
+	color: #000000;
+	background-color: #fff;
+	border-radius: 4px;
+}
+.h13 #zchat span.date-and-time,
+.h13 #c_users,
+.h13 #c_console,
+.h13 .chatbox_row_1,
+.h13 .chatbox_row_2 {
+	color: #D4D4D4;
+}
+.h13 .chatbox_row_1 {
+	background: #484848
+}
+.h13 .chatbox_row_2 {
+	background: #565656
+}
+.h13 .chatbox_row_1,
+.h13 .chatbox_row_2 {
+	padding: 8px 8px 8px 94px;
+	border: 1px solid #2A2A2A;
+	font-size: 12px;
+}
+.h13 #zchat {
+	background-color: #2A2A2A;
+	border-radius: 4px;
+	font-size: 12px;
+}
+.h13 #zchat-message {
+	background: #ffffff;
+}
+.h13 .zchat-popup {
+	background: #E8E8E8;
+	border: 1px solid #D5D5D5;
+}
+.h13 #c_control {
+	color: #FFFFFF;
+	font-weight: bold;
+	background: #2A2A2A
+}
+/* THIN BLUE */
+
+.h14 #c_users {
+	background: #FFF;
+	border: 1px solid #359BED
+}
+.h14 #c_control {
+	background-color: #FFF;
+	color: #222
+}
+.h14 #c_box {
+	background: #FFF;
+	border: 1px solid #359BED
+}
+.h14 #c_console,
+.h13 #c_report {
+	background: #FFF;
+}
+.h14 .zchat-buttons {
+	background-color: #fff;
+	border-radius: 4px;
+	border: 1px solid #359BED
+}
+.h14 #zchat span.date-and-time,
+.h14 #c_users,
+.h14 #c_console,
+.h14 .chatbox_row_1,
+.h14 .chatbox_row_2 {
+	color: #000000;
+}
+.h14 .chatbox_row_1 {
+	background: #FFF
+}
+.h14 .chatbox_row_2 {
+	background: #FFF
+}
+.h14 .chatbox_row_1,
+.h14 .chatbox_row_2 {
+	padding: 8px 8px 8px 94px;
+	border: 1px solid #CCC;
+	font-size: 12px;
+}
+.h14 #zchat {
+	background: #F4F4F4;
+	font-size: 12px;
+}
+.h14 #zchat-message {
+	background: #ffffff;
+	border: 1px solid #359BED
+}
+.h14 .zchat-popup {
+	background: #E8E8E8;
+	border: 1px solid #D5D5D5;
+}
+.h14 #c_control {
+	color: #000;
+	font-weight: bold;
+	background: #F4F4F4
+}
+.h14 #c_right {
+	border: 1px solid #359BED
+}
+</style>
